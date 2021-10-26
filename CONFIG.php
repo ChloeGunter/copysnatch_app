@@ -9,7 +9,7 @@
 
 
 define('DEBUG_MODE', true);
-define('SITEROOT', 'http://localhost:8888/chloe/php-class/image-app/');
+define('SITEROOT', 'http://localhost:8888/chloe/php-class/copysnatch-app/copysnatch-app/');
 
 define( 'USERNAME_MIN', 3 );
 define( 'USERNAME_MAX', 100 ); 
@@ -18,7 +18,7 @@ define( 'PASSWORD_MIN', 8 );
 
 
 $host = 'localhost';
-$user = 'copysnatch_app';
+$user = 'image_app';
 $pass = 'OB*/68xpRSWThhDA';
 $dbname = 'copysnatch_app';
 
