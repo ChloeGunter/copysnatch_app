@@ -1,6 +1,6 @@
 <?php
 require('CONFIG.php');
-// require_once('includes/functions.php');
+require_once('includes/functions.php');
 // require('includes/logout-parse.php');
 require('includes/login-parse.php');
 // header without navigation

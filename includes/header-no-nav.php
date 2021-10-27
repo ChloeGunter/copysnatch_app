@@ -1,6 +1,3 @@
-<?php
-$logged_in_user = check_login();
- ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +5,11 @@ $logged_in_user = check_login();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copysnatch Recipe App</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <div class="site">
         <header class="header">
-            <h1>
-                <a href="index.php">
-                    Copysnatch Recipe App
-                </a>
-            </h1>
-			</ul>
+        <span class="logo"><a href="index.php"></a></span>
+
         </header>

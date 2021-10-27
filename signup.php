@@ -1,8 +1,8 @@
 <?php 
 require('CONFIG.php'); 
-// require_once('includes/functions.php');
+require_once('includes/functions.php');
 require('includes/signup-parse.php');
-//doctype and visible header
+//doctype and invisible header
 require('includes/header-no-nav.php');
 ?>
 <main class="container">
@@ -25,7 +25,6 @@ require('includes/header-no-nav.php');
 
 		<input type="submit" value="Sign Up">
 		<input type="hidden" name="did_signup" value="1">
-        TODO: changed name to did_signup
     </form>
 </main>
 
