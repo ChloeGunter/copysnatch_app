@@ -1,10 +1,6 @@
 TODO
 ----
 * Build the basic HTML and CSS of the home page
-* "chunck" the header, sidebar and footer
-* make the dates pretty
-* add the list of users, categories and tags to the sidebar
-* write custom functions to count comments, improve the appearance of dates
 * Improve the queries we wrote last time to include:
 - category and author information on each post
 - a count of posts in each category
@@ -15,10 +11,7 @@ TODO
 * Add the comments list to the single.php template
 * create and parse the "add comment" form
 * build the search form
-* build the search.php for the results page
 * add pagination to "flip" through the results
-* Add Register form and parse new user accounts
-* Add Login and parse
 * Add login authentication to certain features (commenting, new post etc)
 * Add log out feature
 
@@ -27,3 +20,8 @@ DONE
 * Set up Github repo
 * Wireframe the basic templates
 * Design the database structure
+* Sign in form working
+* Register/sign up form working
+* Logged in user profile pic showing in header
+* New post working
+* build the search.php for the results page

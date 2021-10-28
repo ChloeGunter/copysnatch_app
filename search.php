@@ -1,14 +1,63 @@
 <?php 
 require('CONFIG.php');
-// require_once('includes/functions.php');
-// CONFIG How many posts per page?
+require_once('includes/functions.php');
+
+//CONFIG. How many posts per page?
+$per_page = 4;
 
 //sanitize what they searched for
 //What did they search for?
+$phrase = filter_var( $_GET['phrase'], FILTER_SANITIZE_STRING );
 
 require('includes/header.php');
  ?>
 <main class="content">
+<?php 
+	if( $phrase != '' ){
+		//get all the published posts about this phrase.
+		$result = $DB->prepare('SELECT * FROM posts
+								WHERE is_published = 1
+								AND (
+									title LIKE :phrase
+									OR body LIKE :phrase
+								)');
+		$result->execute( array( 'phrase' => "%$phrase%" ) );
+
+		//how many total results found?
+		$total = $result->rowCount();
+
+		//how many pages will it take to hold them? (round up because there's no 'half' page)
+		$max_pages = ceil($total/$per_page);
+
+		//what page are we on? URL will be like search.php?phrase=bla&page=2
+		$current_page = filter_var( $_GET['page'], FILTER_SANITIZE_NUMBER_INT );
+
+		//make sure the current page is valid
+		if( $current_page < 1 OR $current_page > $max_pages ){
+			$current_page = 1;
+		}
+
+		//create the offset for the SQL LIMIT
+		$offset = ( $current_page - 1 ) * $per_page;
+
+		//write the query again, this time with the LIMIT
+		$result = $DB->prepare('SELECT * FROM posts
+								WHERE is_published = 1
+								AND (
+									title LIKE :phrase
+									OR body LIKE :phrase
+								)
+								LIMIT :offset, :per_page');
+
+		//must use strict data types with bindParam because LIMIT requires integers
+		$wildcard_phrase = "%$phrase%";
+		$result->bindParam( 'phrase', $wildcard_phrase, PDO::PARAM_STR );
+		$result->bindParam( 'offset', $offset, PDO::PARAM_INT );
+		$result->bindParam( 'per_page', $per_page, PDO::PARAM_INT );
+		// debug_statement($result);
+		$result->execute();
+
+ ?>
     <section class="title">
         <h2>Search Results for <?php echo $phrase; ?></h2>
         <h3><?php echo $total; ?> posts found</h3>
@@ -18,11 +67,13 @@ require('includes/header.php');
 
     <?php 
         // if the total number of posts found is >= 1 then...
+        if( $total >= 1 ){
     ?>
 
     <section class="grid">
         <?php    
             //while(){// while loop to fetch
+            while( $row = $result->fetch() ){
         ?>
         <div class="item">
             <a href="single.php?post_id=<?php echo $row['post_id']; ?>">
@@ -34,25 +85,37 @@ require('includes/header.php');
                 <span><i></i><?php echo $row['time']; ?>minutes</span>
                 <span><i></i><?php echo $row['servings']; ?>servings</span>
                 <span><i></i><?php echo $row['calories']; ?>calories</span>
-                <span><i></i><?php echo $row['levels.name']; ?></span>
+                <!-- <span><i></i><?php // echo $row['levels.name']; ?></span> -->
             </div>
             </a>
         </div>
-        <?php //} // end while loop ?>
+        <?php } // end while loop ?>
     </section> <!-- end grid -->
 
     <section class="pagination">
         <?php 
         //cariables for the neighboring pages
-        ?>
-    </section>
-    <?php //} //end of if total ?>
+        $prev = $current_page - 1;
+        $next = $current_page + 1;
 
-    <?php //}else{
+        if( $current_page != 1 ){
+         ?>
+        <a href="search.php?phrase=<?php echo $phrase; ?>&amp;page=<?php echo $prev; ?>" class="button">&larr; Previous
+        </a>
+        <?php } 
+
+        if( $current_page != $max_pages ){ ?>
+        <a href="search.php?phrase=<?php echo $phrase; ?>&amp;page=<?php echo $next; ?>" class="button">Next &rarr;
+        </a>
+        <?php } ?>
+    </section>
+    <?php } //end if total 
+    ?>
+    <?php }else{
         // TODO: Popular Searches or most recent posts
-        //echo 'Invalid Search';
-    //}
-     ?>
+        echo 'Invalid Search';
+    }
+    ?>
 
 </main>
 <?php 
