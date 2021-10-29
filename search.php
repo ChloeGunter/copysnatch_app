@@ -77,7 +77,7 @@ require('includes/header.php');
         ?>
         <div class="item">
             <a href="single.php?post_id=<?php echo $row['post_id']; ?>">
-                <img src="<?php echo $row['image']; ?>" width="150" height="150" />
+                <?php show_post_image( $row['image'], 'small' ); ?>
                 <h2><?php echo $row['title']; ?></h2>
                 <p><?php echo $row['body']; ?></p>
 

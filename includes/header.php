@@ -15,7 +15,7 @@ $logged_in_user = check_login();
 <body>
     <div class="site">
         <header class="header">
-            <a href="#" class="logo"><img src="images/header-logo.png" class="logo" /></a>
+            <a href="index.php" class="logo"><img src="images/header-logo.png" class="logo" /></a>
             <nav class="main-navigation">
                 <ul class="menu">
                 <?php if( ! $logged_in_user ){ ?>
@@ -27,6 +27,7 @@ $logged_in_user = check_login();
                     <li class="profile_pic"><a href="profile.php?user_id=<?php echo $logged_in_user['user_id']; ?>">
                     <?php show_profile_pic( $logged_in_user['profile_pic'], 40 ); ?></a></li>   
                 </a></li>
+                <li><a href="login.php?action=logout">Log Out</a></li>
                 <?php } ?>
                 </ul>
             </nav>

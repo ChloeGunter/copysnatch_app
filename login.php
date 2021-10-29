@@ -1,7 +1,7 @@
 <?php
 require('CONFIG.php');
 require_once('includes/functions.php');
-// require('includes/logout-parse.php');
+require('includes/logout-parse.php');
 require('includes/login-parse.php');
 // header without navigation
 require('includes/header-no-nav.php'); 
@@ -34,3 +34,7 @@ require('includes/header-no-nav.php');
     </main>
 </body>
 </html>
+
+<?php 
+require('includes/footer.php');
+ ?>

@@ -6,7 +6,8 @@ require('includes/header.php');
     <main class="content">
     <?php //1. Write it. get all published posts, newest first
 		$result = $DB->prepare('SELECT posts.post_id, posts.image, posts.title,
-									   posts.body, posts.date, users.username, users.user_id, users.profile_pic, categories.name
+									   posts.body, posts.date, users.username, 
+                                       users.user_id, users.profile_pic, categories.name
 								FROM posts, users, categories
 								WHERE posts.is_published = 1
 								AND users.user_id = posts.user_id
@@ -28,7 +29,7 @@ require('includes/header.php');
 
 			<?php 
 			//show this button if the logged in user is the author
-			if( $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+			if( $logged_in_user AND $logged_in_user['user_id'] == $row['user_id'] ){ ?>
 			<br>
 			<a href="edit-post.php?post_id=<?php echo $row['post_id']; ?>" class="button button-outline">Edit</a>
 			<?php } ?>

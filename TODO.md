@@ -1,5 +1,9 @@
 TODO
 ----
+
+
+
+
 * Build the basic HTML and CSS of the home page
 * Improve the queries we wrote last time to include:
 - category and author information on each post
@@ -13,7 +17,6 @@ TODO
 * build the search form
 * add pagination to "flip" through the results
 * Add login authentication to certain features (commenting, new post etc)
-* Add log out feature
 
 DONE
 ----
@@ -25,3 +28,6 @@ DONE
 * Logged in user profile pic showing in header
 * New post working
 * build the search.php for the results page
+* Make post picture appear in search
+* Add log out feature
+* Make post picture appear in index
