@@ -1,6 +1,11 @@
 TODO
 ----
-
+* Build rating system on single posts
+* Build profile page
+* Build the post nutrition form
+* Build the parse nutrition form
+* Build the parse instructions form
+* Build the parse ingredients form
 
 
 
@@ -31,3 +36,5 @@ DONE
 * Make post picture appear in search
 * Add log out feature
 * Make post picture appear in index
+* Build the post instructions form
+* Build the post ingredients form
