@@ -9,7 +9,6 @@ $logged_in_user = check_login();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copysnatch Recipe App</title>
     <script src="https://kit.fontawesome.com/f12efb326b.js" crossorigin="anonymous"></script>
-    <link href="css/reset.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
