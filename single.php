@@ -53,11 +53,21 @@ require('includes/comment-parse.php');
             </div>
 
             <div class="box-container">
-                <p><?php echo $row['ingredients']; ?></p>
+                <ul><?php 
+						$array = unserialize($row['ingredients']);
+						foreach($array as $item ){
+							echo "<li>$item</li>";
+						}
+					?></ul>
             </div>
 
             <div class="box-container">
-                <p><?php echo $row['instructions']; ?></p>
+			<ol><?php 
+						$array = unserialize($row['steps']);
+						foreach($array as $step ){
+							echo "<li>$step</li>";
+						}
+					?></ol>
             </div>
 
             <div class="box-container">

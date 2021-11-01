@@ -3,10 +3,6 @@ TODO
 * Build rating system on single posts
 * Build profile page
 * Profile page tabs to display recipies and categories of recipies
-* Build the post nutrition form
-* Build the parse nutrition form
-* Build the parse instructions form
-* Build the parse ingredients form
 * Improve CSS of the page
 * Display popular posts on home page
 
@@ -25,3 +21,7 @@ DONE
 * Make post picture appear in index
 * Build the post instructions form
 * Build the post ingredients form
+* Build the post nutrition form
+* Build the parse nutrition form
+* Build the parse instructions form
+* Build the parse ingredients form

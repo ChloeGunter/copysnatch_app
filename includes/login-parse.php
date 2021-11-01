@@ -6,7 +6,7 @@ if( isset( $_POST['did_login'] ) ){
 	//validate
 	$valid = true;
 	//username wrong length
-	if( strlen( $username ) < USERNAME_MIN OR ( $username ) > USERNAME_MAX ){
+	if( strlen( $username ) < USERNAME_MIN OR strlen( $username ) > USERNAME_MAX ){
 		$valid = false;
 		//TODO: get rid of error message after testing
 		$errors['username'] = 'username wrong length';

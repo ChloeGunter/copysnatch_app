@@ -96,7 +96,7 @@ if( isset( $_POST['did_upload'] ) ){
 		// Add post to Database
 		if( $did_save ){
 			$result = $DB->prepare('INSERT INTO posts
-									( image, title, body, time, servings, calories, level_id, ingredients, instructions, category_id, user_id, date, allow_comments, is_published )
+									( image, title, body, time, servings, calories, level_id, ingredients, steps, category_id, user_id, date, allow_comments, is_published )
 									VALUES
 									( :image, "", "", "", "", "", 1, "", "", 0, :user_id, now(), 0, 0 )');
 			$data = array(

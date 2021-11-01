@@ -8,18 +8,7 @@ if( ! $logged_in_user ){
 }
 //which post are we editing?
 $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
-//if submitted, pre-fill the fields so the form "sticks" after editing, else use some default items
-if(isset($_POST['item'])){
-	$ingredients = $_POST['item'];
-}else{
-	$ingredients = array('Ingredient 1', 'Ingredient 2',	);
-}
-//if submitted, pre-fill the fields so the form "sticks" after editing, else use some default steps
-if(isset($_POST['step'])){
-	$steps = $_POST['step'];
-}else{
-	$steps = array('Step 1', 'Step 2',	);
-}
+
  ?>
     <main class="content">
         <?php require( 'includes/edit-post-parse.php' ); ?>
@@ -37,6 +26,35 @@ if(isset($_POST['step'])){
 
             <label>Caption</label>
             <textarea name="body"><?php echo $body; ?></textarea>
+
+            <h1>Recipe Details</h1>
+            <label>Time to make the recipe:</label>
+            <span><input type="number" name="time" value="<?php echo $time; ?>">minutes</span>
+
+            <label>Number of servings:</label>
+            <span><input type="number" name="servings" value="<?php echo $servings; ?>">servings</span>
+
+            <label>Calories per serving:</label>
+            <span><input type="number" name="calories" value="<?php echo $calories; ?>">calories</span>
+
+            <?php 
+            //get all the categories in the alphabetical order
+            $result = $DB->prepare('SELECT * FROM levels
+                                    ORDER BY name ASC');
+            $result->execute();
+            if( $result->rowCount() >= 1 ){
+            ?>
+            <label>Difficulty Level:</label>
+            <select name="level_id">
+                <?php while( $row = $result->fetch() ){ ?>
+                <option value="<?php echo $row['level_id']; ?>" 
+                    <?php selected( $level_id, $row['level_id'] ); ?>>
+                    <?php echo $row['name']; ?>
+                </option>
+                <?php } ?>
+            </select>
+            <?php } ?>
+
 
             <h1>Add Your Ingredients</h1>
         <!-- <form method="post"  action="edit-bullets.php"> -->
