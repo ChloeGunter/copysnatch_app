@@ -28,6 +28,11 @@ img{
 	width:100%;
 }
 
+/* list style changed from reset.css */
+ol, ul {
+	padding-left: 20px;
+}
+
 
 /* MOBILE GRID */
 .header {

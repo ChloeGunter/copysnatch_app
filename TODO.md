@@ -25,4 +25,4 @@ DONE
 * Build the parse nutrition form
 * Build the parse instructions form
 * Build the parse ingredients form
-* Fix instruction and ingredients list styles with numbers and bullets points. By deleting reset style sheet
+* Fix instruction and ingredients list styles with numbers and bullets points.
