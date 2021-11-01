@@ -5,6 +5,25 @@ if( isset( $_POST['did_edit'] ) ){
 	$title = filter_var( $_POST['title'], FILTER_SANITIZE_STRING );
 	$body = filter_var( $_POST['body'], FILTER_SANITIZE_STRING );
 	$category_id = filter_var( $_POST['category_id'], FILTER_SANITIZE_NUMBER_INT );
+	$ingredients = array();
+	foreach( $_POST['item'] AS $item ){
+		$ingredient = filter_var($item, FILTER_SANITIZE_STRING);
+		if( strlen($ingredient) > 0 ){
+			$ingredients[] = $ingredient;
+		}
+	} 
+	$steps = array();
+	foreach( $_POST['step'] AS $step ){
+		$step = filter_var($step, FILTER_SANITIZE_STRING);
+		if( strlen($step) > 0 ){
+			$steps[] = $step;
+		}
+	} 
+
+	// serealized
+	//$s_ingredients = serialize($ingredients);
+	//$s_steps = serialize($steps);
+
 	//sanitize booleans
 	if( !isset( $_POST['allow_comments'] ) OR $_POST['allow_comments'] != 1 ){
 		$allow_comments = 0;
@@ -41,7 +60,9 @@ if( isset( $_POST['did_edit'] ) ){
 							   SET
 							   title = :title,
 							   body = :body,
-							--    category_id = :cat,
+							   category_id = :cat,
+							   ingredients = :ingredients,
+							   instructions = :instructions,
 							   allow_comments = :allow_comments,
 							   is_published = :is_published
 
@@ -51,7 +72,9 @@ if( isset( $_POST['did_edit'] ) ){
 		$data = array(
 					'title' => $title,
 					'body' => $body,
-					// 'cat' => $category_id,
+					'cat' => $category_id,
+					'ingredients' => $s_ingredients,
+					'instructions' => $s_steps,
 					'allow_comments' => $allow_comments,
 					'is_published' => $is_published,
 					'post_id' => $post_id,

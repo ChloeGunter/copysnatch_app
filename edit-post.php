@@ -10,9 +10,9 @@ if( ! $logged_in_user ){
 $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
 //if submitted, pre-fill the fields so the form "sticks" after editing, else use some default items
 if(isset($_POST['item'])){
-	$items = $_POST['item'];
+	$ingredients = $_POST['item'];
 }else{
-	$items = array('Ingredient 1', 'Ingredient 2',	);
+	$ingredients = array('Ingredient 1', 'Ingredient 2',	);
 }
 //if submitted, pre-fill the fields so the form "sticks" after editing, else use some default steps
 if(isset($_POST['step'])){
@@ -42,7 +42,7 @@ if(isset($_POST['step'])){
         <!-- <form method="post"  action="edit-bullets.php"> -->
             <fieldset id="field">
                 <?php 
-                foreach( $items AS $key => $item ){ 
+                foreach( $ingredients AS $key => $item ){ 
                     $number = $key + 1;
                     ?>
                     <div>

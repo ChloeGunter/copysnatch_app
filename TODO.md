@@ -2,26 +2,13 @@ TODO
 ----
 * Build rating system on single posts
 * Build profile page
+* Profile page tabs to display recipies and categories of recipies
 * Build the post nutrition form
 * Build the parse nutrition form
 * Build the parse instructions form
 * Build the parse ingredients form
-
-
-
-* Build the basic HTML and CSS of the home page
-* Improve the queries we wrote last time to include:
-- category and author information on each post
-- a count of posts in each category
-- posts with recent comments in the sidebar
-* add the debug output at the bottom of the page
-* Add the single post template
-* Add a default user picture for users with a null image
-* Add the comments list to the single.php template
-* create and parse the "add comment" form
-* build the search form
-* add pagination to "flip" through the results
-* Add login authentication to certain features (commenting, new post etc)
+* Improve CSS of the page
+* Display popular posts on home page
 
 DONE
 ----
