@@ -1,6 +1,6 @@
 TODO
 ----
-* Build rating system on single posts
+* Build rating parse system on single.php
 * Build profile page
 * Profile page tabs to display recipies and categories of recipies
 * Improve CSS of the page
@@ -26,3 +26,8 @@ DONE
 * Build the parse instructions form
 * Build the parse ingredients form
 * Fix instruction and ingredients list styles with numbers and bullets points.
+* Created correct ratings table in MySQL
+* Built the display for the rating system on single.php
+* About Us page
+* Terms of Service page
+* Add feedback for login and sign up errors and success messages

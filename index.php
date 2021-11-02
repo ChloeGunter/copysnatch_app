@@ -4,6 +4,46 @@ require_once('includes/functions.php');
 require('includes/header.php');
  ?>
     <main class="content">
+
+    <?php //1. Write it. get all published posts, newest first
+		$result = $DB->prepare('SELECT posts.post_id, posts.image, 
+                                       users.user_id, users.profile_pic, users.username
+								FROM posts, users
+								WHERE posts.is_published = 1
+								AND users.user_id = posts.user_id
+								LIMIT 4');
+		//2. Run it.
+		$result->execute();
+		//3. Check it. did we find any posts?
+		if( $result->rowCount() >= 1 ){ 
+			//loop it - once per row
+			while( $row = $result->fetch() ){
+	 ?>
+
+	<div class="popular-post">
+			<a href="single.php?post_id=<?php echo $row['post_id']; ?>">
+		<!-- 			<img src="<?php //echo $row['image']; ?>" /> -->
+			<?php show_post_image( $row['image'], 'small' ); ?>
+			</a>
+			<span class="author">
+				<?php show_profile_pic( $row['profile_pic'], 40 ); ?>
+				<?php echo $row['username']; ?>
+			</span>
+	</div>
+	
+	<?php 
+		} //end while loop.
+			}else{ ?>
+
+		<div class="feedback">
+			<h2>Sorry</h2>
+			<p>No posts found. Try a search instead.</p>
+		</div>
+
+	<?php } //end of if posts found.?>     
+
+
+
     <?php //1. Write it. get all published posts, newest first
 		$result = $DB->prepare('SELECT posts.post_id, posts.image, posts.title,
 									   posts.body, posts.date, users.username, 
@@ -21,6 +61,7 @@ require('includes/header.php');
 			//loop it - once per row
 			while( $row = $result->fetch() ){
 		 ?>
+
 		<div class="one-post">
 			<a href="single.php?post_id=<?php echo $row['post_id']; ?>">
 <!-- 			<img src="<?php //echo $row['image']; ?>" /> -->

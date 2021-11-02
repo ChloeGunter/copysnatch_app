@@ -5,8 +5,8 @@
  * It is identical whether using jquery or pure ajax
  * note that it has no doctype and is not intended as a standalone file. 
  */
-require('../config.php');
-require_once('../functions.php');
+require('../CONFIG.php');
+require_once('../includes/functions.php');
 
 //data coming from jquery .ajax() call
 $post_id 	= filter_var($_REQUEST['postId'], FILTER_SANITIZE_NUMBER_INT);

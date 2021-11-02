@@ -7,6 +7,8 @@ require('includes/header-no-nav.php');
 ?>
 <main class="container">
     <h1>Sign Up</h1>
+    <?php show_feedback( $feedback, $feedback_class, $errors ); ?>
+
     <form method="post" action="signup.php">
 
         <label>Email</label>

@@ -35,16 +35,32 @@ require('includes/comment-parse.php');
 			while( $row = $result->fetch() ){
 		 ?>
         <div class="one-post">
-            <?php show_post_image( $row['image'] ); ?>
 
-            <span class="author">
+			<span class="author">
 				<?php show_profile_pic( $row['profile_pic'], 40 ); ?>
 				<?php echo $row['username']; ?>
 			</span>
-            <h3 class="category"><?php echo $row['category']; ?></h3>
-            <h2><?php echo $row['title']; ?></h2>
-            <p><?php echo $row['body']; ?></p>
 
+            <?php show_post_image( $row['image'] ); ?>
+
+			<h2><?php echo $row['title']; ?></h2>
+
+			<form action="#" method="post">
+				<span class="star-rating">
+				<!-- 	data-id is the primary key for the post (post_id = 1)	 -->
+				<input type="radio" name="rating" value="1" data-id="<?php echo $post_id; ?>"><i></i>
+				<input type="radio" name="rating" value="2" data-id="<?php echo $post_id; ?>"><i></i>
+				<input type="radio" name="rating" value="3" data-id="<?php echo $post_id; ?>"><i></i>
+				<input type="radio" name="rating" value="4" data-id="<?php echo $post_id; ?>"><i></i>
+				<input type="radio" name="rating" value="5" data-id="<?php echo $post_id; ?>"><i></i>
+				</span>
+
+			</form>
+
+			<p><?php echo $row['body']; ?></p>
+
+            <h3 class="category"><?php echo $row['category']; ?></h3>
+            
             <div class="nutrition">
                 <span><i></i><?php echo $row['time']; ?>minutes</span>
                 <span><i></i><?php echo $row['servings']; ?>servings</span>
@@ -95,3 +111,32 @@ require('includes/comment-parse.php');
 <?php 
 require('includes/footer.php');
  ?>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+        $(":radio").click(function() { 
+            //get the value of the rating they clicked
+            var rating = this.value;      
+            var postId = $(this).data("id");  
+            var userId = <?php echo $user_id; ?>      
+            //create an ajax request to display.php
+            $.ajax({   
+                type: "GET",
+                url: "ajax-handlers/rate-parse.php",  
+                data: { 
+                    'rating': rating, 
+                    'postId': postId,
+                    'userId': userId
+                    },   
+               
+              success: function(response){
+                $("#display-area").html(response);
+                }
+            });
+        });
+         //do stuff during and after ajax is loading (like visual feedback)
+        $(document).on({
+            ajaxStart: function() { $("#display-area").addClass("loading");    },
+            ajaxStop: function() { $("#display-area").removeClass("loading"); } 
+        });
+    </script>

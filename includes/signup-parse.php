@@ -90,7 +90,7 @@ if( isset($_POST['did_signup']) ){
 			//check if one row was added
 			if( $result->rowCount() >= 1 ){
 				//success
-				$feedback = 'Welcome! You can now Log In.';
+				$feedback = 'Welcome! You can now Log In.<a href="login.php">Log In</a>';
 				$feedback_class = 'success';
 			}else{
 				//db error
