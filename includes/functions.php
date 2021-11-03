@@ -64,7 +64,8 @@ function show_profile_pic( $profile_pic, $size = 50 ){
     if( $profile_pic == '' ){
         $profile_pic = 'images/default-user.png';
     }
-    echo "<img src='$profile_pic' width='$size' height='$size'>";
+    # echo "<img src='avatars/$profile_pic' width='$size' height='$size'>";
+    echo '<img src="' . $profile_pic . '">';
 }
 
 //display any form's feedback
@@ -252,14 +253,92 @@ function show_post_image( $image, $size = 'medium' ){
 }
 
 
+/**
+ * Rating Additions
+ */
+
+/**
+ * Show the stars
+ * Display both the current average rating of a post and the interface to add a new rating
+ * @param  int $post_id 
+ * @return HTML star inputs and outputs
+ */
+function rating_interface($post_id = 0, &$user_id = 0){
+    rating_output($post_id); 
+    rating_inputs($post_id, $user_id); 
+}
+/**
+ * Get the current average rating of any post
+ * @param  int $post_id 
+ * @return float - average rating as a decimal like 3.058
+ */
+function get_rating( $post_id = 0 ){
+    global $DB;
+    //calculate the average rating
+    $result= $DB->prepare("SELECT AVG(rating) AS average FROM ratings WHERE post_id = ?");
+    $result->execute(array($post_id));
+    $row = $result->fetch();
+    return $row['average'];
+}
+
+/**
+ * Display radio button inputs if logged in and user hasn't rated yet
+ * @param  integer $post_id  
+ * @param  integer &$user_id the user who may or may not have rated it yet
+ * @return HTML  a form with radio button inputs
+ */
+function rating_inputs($post_id = 0, &$user_id = 0){
+    global $DB;
+    // only if logged in 
+    if( isset($user_id) AND $user_id!= 0 ){
+    //check if this user has already rated
+        $result = $DB->prepare('SELECT * from ratings 
+            WHERE user_id = ? 
+            AND post_id = ?');
+        $result->execute(array($user_id, $post_id));
+
+        if($result->rowCount() < 1){
+        ?>
+            <form action="#" method="post">
+                <label>Rate this:</label>
+                <div class="star-rating">
+                    <!--    data-id is the primary key for the post (post_id = 1)    -->
+                    <input type="radio" name="rating" value="1" data-id="<?php echo $post_id; ?>"><i></i>
+                    <input type="radio" name="rating" value="2" data-id="<?php echo $post_id; ?>"><i></i>
+                    <input type="radio" name="rating" value="3" data-id="<?php echo $post_id; ?>"><i></i>
+                    <input type="radio" name="rating" value="4" data-id="<?php echo $post_id; ?>"><i></i>
+                    <input type="radio" name="rating" value="5" data-id="<?php echo $post_id; ?>"><i></i>
+                </div>
+            </form>
+            <?php
+        }//end if user haven't rated yet
+        else{
+            $row = $result->fetch();
+            $rating = $row['rating'];
+            echo '<br>you have rated this recipe '. $rating . ' stars';
+        }
+    }//end if logged in
+    else{
+        echo 'not logged in';
+    }
+}
+
+/**
+ * Display the current average rating as stars
+ * @param  int $post_id 
+ * @return HTML output stars
+ */
 function rating_output( $post_id ){
-	global $DB;
-	//calculate the average rating
-	$result= $DB->prepare("SELECT AVG(rating) AS average FROM ratings WHERE post_id = ?");
-	$result->execute(array($post_id));
-	$row = $result->fetch();
-	echo '<br>The rounded average rating is '. round($row['average']);
-	echo '<br>The true average rating is ' . $row['average'];
+    $avg = get_rating($post_id);
+    ?>
+    <div class="star-rating star-rating-output rating-<?php echo round($avg); ?>">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+    </div>
+ <?php
 }
 
 //no close php

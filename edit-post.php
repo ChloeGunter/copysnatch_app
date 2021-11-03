@@ -39,8 +39,7 @@ $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
 
             <?php 
             //get all the categories in the alphabetical order
-            $result = $DB->prepare('SELECT * FROM levels
-                                    ORDER BY name ASC');
+            $result = $DB->prepare('SELECT * FROM levels');
             $result->execute();
             if( $result->rowCount() >= 1 ){
             ?>

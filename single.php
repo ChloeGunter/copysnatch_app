@@ -37,29 +37,20 @@ require('includes/comment-parse.php');
         <div class="one-post">
 
 			<span class="author">
-				<?php show_profile_pic( $row['profile_pic'], 40 ); ?>
-				<?php echo $row['username']; ?>
+				<a href="profile.php?user_id=<?php echo $row['user_id']; ?>"><?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
+				<?php echo $row['username']; ?></a>
 			</span>
 
             <?php show_post_image( $row['image'] ); ?>
 
 			<h2><?php echo $row['title']; ?></h2>
-
-			<form action="#" method="post">
-				<span class="star-rating">
-				<!-- 	data-id is the primary key for the post (post_id = 1)	 -->
-				<input type="radio" name="rating" value="1" data-id="<?php echo $post_id; ?>"><i></i>
-				<input type="radio" name="rating" value="2" data-id="<?php echo $post_id; ?>"><i></i>
-				<input type="radio" name="rating" value="3" data-id="<?php echo $post_id; ?>"><i></i>
-				<input type="radio" name="rating" value="4" data-id="<?php echo $post_id; ?>"><i></i>
-				<input type="radio" name="rating" value="5" data-id="<?php echo $post_id; ?>"><i></i>
-				</span>
-
-			</form>
-
 			<p><?php echo $row['body']; ?></p>
+			<h3 class="category"><?php echo $row['category']; ?></h3>
 
-            <h3 class="category"><?php echo $row['category']; ?></h3>
+			<!-- this container has to be here -->
+			<div class="rating-container">
+			<?php rating_interface($row['post_id'], $logged_in_user['user_id']); ?>	
+			</div>
             
             <div class="nutrition">
                 <span><i></i><?php echo $row['time']; ?>minutes</span>
@@ -113,12 +104,15 @@ require('includes/footer.php');
  ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<?php if($logged_in_user){ ?>
 <script type="text/javascript">
         $(":radio").click(function() { 
             //get the value of the rating they clicked
             var rating = this.value;      
             var postId = $(this).data("id");  
-            var userId = <?php echo $user_id; ?>      
+	        var userId = <?php echo $logged_in_user['user_id']; ?>;   	
+            var $outputContainer =  $(this).parents('.rating-container');	
+            console.log($outputContainer);     
             //create an ajax request to display.php
             $.ajax({   
                 type: "GET",
@@ -130,13 +124,14 @@ require('includes/footer.php');
                     },   
                
               success: function(response){
-                $("#display-area").html(response);
+	                $outputContainer.html(response);
                 }
             });
         });
          //do stuff during and after ajax is loading (like visual feedback)
         $(document).on({
-            ajaxStart: function() { $("#display-area").addClass("loading");    },
-            ajaxStop: function() { $("#display-area").removeClass("loading"); } 
+	            ajaxStart: function() { $outputContainer.addClass("loading");    },	
+            ajaxStop: function() { $outputContainer.removeClass("loading"); } 
         });
     </script>
+<?php } //end if logged in ?>	

@@ -1,10 +1,8 @@
 TODO
 ----
-* Build rating parse system on single.php
-* Build profile page
-* Profile page tabs to display recipies and categories of recipies
 * Improve CSS of the page
-* Display popular posts on home page
+* Improve CSS on popular posts on home page
+* Fix edit profile error for no changes made.
 
 DONE
 ----
@@ -31,3 +29,8 @@ DONE
 * About Us page
 * Terms of Service page
 * Add feedback for login and sign up errors and success messages
+* Build profile page
+* Profile page tabs to display recipies and categories of recipies
+* Display popular posts on home page
+* Build rating parse system on single.php
+* Build logic for categories of recipies tab

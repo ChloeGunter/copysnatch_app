@@ -26,7 +26,7 @@ require('includes/header.php');
 			<?php show_post_image( $row['image'], 'small' ); ?>
 			</a>
 			<span class="author">
-				<?php show_profile_pic( $row['profile_pic'], 40 ); ?>
+				<?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
 				<?php echo $row['username']; ?>
 			</span>
 	</div>
@@ -76,7 +76,7 @@ require('includes/header.php');
 			<?php } ?>
 
 			<span class="author">
-				<?php show_profile_pic( $row['profile_pic'], 40 ); ?>
+				<?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
 				<?php echo $row['username']; ?>
 			</span>
 

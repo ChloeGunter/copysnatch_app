@@ -22,9 +22,9 @@ $result = $DB->prepare("INSERT INTO ratings
 $result->execute(array($post_id, $user_id, $rating));
 //check
 if($result->rowCount() >= 1){
-	echo '<b>Thanks for rating '. $rating .' stars</b>';
-	
-	rating_output($post_id);
+	//echo '<b>Thanks for rating '. $rating .' stars</b>';
+
+	rating_interface($post_id, $user_id);
 	
 }else{
 	echo 'Sorry, the rating did not work';

@@ -52,7 +52,7 @@ if( isset( $_POST['did_login'] ) ){
 					$_SESSION['user_id'] = $row['user_id'];
 
 					//TODO: redirect to a secret page
-					$feedback = 'You are logged in.';
+					$feedback = 'You have successfully logged in.<button class="button button-outline"><a href="index.php">Home Page</a></button>';
 					$feedback_class = 'success';
 				}else {
 					$feedback = 'Sorry, the authentication system encountered a problem. Try again.';

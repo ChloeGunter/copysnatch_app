@@ -26,7 +26,7 @@ $logged_in_user = check_login();
                 <?php }else{ ?>
                     <li><a href="new-post.php"><i class="fas fa-plus"></i></a></li>
                     <li class="profile_pic"><a href="profile.php?user_id=<?php echo $logged_in_user['user_id']; ?>">
-                    <?php show_profile_pic( $logged_in_user['profile_pic'], 40 ); ?></a></li>   
+                    <?php show_profile_pic( $logged_in_user['profile_pic'], 'small' ); ?></a></li>   
                 </a></li>
                 <li><a href="login.php?action=logout">Log Out</a></li>
                 <?php } ?>

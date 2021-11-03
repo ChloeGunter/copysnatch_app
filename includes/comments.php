@@ -29,10 +29,7 @@ if( $total >= 1 ){
     ?>
     <div class="one-comment">
         <div class="user">
-            <?php 
-            //profile pic
-            show_profile_pic( $row['profile_pic'] ); 
-            ?>
+        <?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
 
 			<?php 
             //username
