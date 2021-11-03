@@ -33,4 +33,5 @@ DONE
 * Profile page tabs to display recipies and categories of recipies
 * Display popular posts on home page
 * Build rating parse system on single.php
-* Build logic for categories of recipies tab
+* Build logic for categories of recipes tab
+* Fix popular posts logic

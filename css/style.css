@@ -84,6 +84,11 @@ ol, ul {
 	padding-left: .25rem;
 }
 
+/* POPULAR POSTS */
+div.popular-post a.popular-post img {
+	width: 50%;
+}
+
 /* SEARCH FORM */
 .header form span {
     border-radius: 50px;

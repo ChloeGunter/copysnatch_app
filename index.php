@@ -7,10 +7,11 @@ require('includes/header.php');
 
     <?php //1. Write it. get all published posts, newest first
 		$result = $DB->prepare('SELECT posts.post_id, posts.image, 
-                                       users.user_id, users.profile_pic, users.username
-								FROM posts, users
+                                       users.user_id, users.profile_pic, users.username, ratings.rating
+								FROM posts, users, ratings
 								WHERE posts.is_published = 1
 								AND users.user_id = posts.user_id
+								ORDER BY rating DESC
 								LIMIT 4');
 		//2. Run it.
 		$result->execute();
@@ -21,7 +22,7 @@ require('includes/header.php');
 	 ?>
 
 	<div class="popular-post">
-			<a href="single.php?post_id=<?php echo $row['post_id']; ?>">
+			<a class="popular-post" href="single.php?post_id=<?php echo $row['post_id']; ?>">
 		<!-- 			<img src="<?php //echo $row['image']; ?>" /> -->
 			<?php show_post_image( $row['image'], 'small' ); ?>
 			</a>
