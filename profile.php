@@ -67,6 +67,9 @@ if( isset( $_GET['user_id'] ) ){
 		$result->execute( array($user_id) );
 		//3. Check it. did we find any posts?
 		if( $result->rowCount() >= 1 ){ 
+            ?>
+            <div class="profile-grid">
+            <?php
 			//loop it - once per row
 			while( $row = $result->fetch() ){
 		?>
@@ -86,6 +89,9 @@ if( isset( $_GET['user_id'] ) ){
 
 		<?php 
 			} //end while loop.
+        ?>
+        </div>
+        <?php
 		}else{ ?>
 
 		<div class="feedback">
@@ -106,12 +112,14 @@ if( isset( $_GET['user_id'] ) ){
             if( $result->rowCount() >= 1 ){
             ?>
             <select class="category-dropdown" name="category_id">
+                <div class="profile-grid">
                 <?php while( $row = $result->fetch() ){ ?>
                 <option value="<?php echo $row['category_id']; ?>" 
                     <?php selected( $category_id, $row['category_id'] ); ?>>
                     <?php echo $row['name']; ?>
                 </option>
                 <?php } ?>
+                </div>
             </select>
         <?php } ?>
         	<div class="category-posts">
