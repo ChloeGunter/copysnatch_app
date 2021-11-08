@@ -384,8 +384,7 @@ section.content img {
 }
 
 /* RECIPE SECTION */
-section#recipes,
-div.category-posts {
+div.profile-grid {
 	display: grid;
     grid-auto-flow: column;
     grid-template-rows: repeat(3, auto);

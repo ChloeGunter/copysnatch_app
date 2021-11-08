@@ -19,6 +19,9 @@ $result->execute( array($category_id, $user_id) );
 //3. Check it. did we find any posts?
 		if( $result->rowCount() >= 1 ){ 
 			//loop it - once per row
+			?>
+			<div class="profile-grid">
+			<?php
 			while( $row = $result->fetch() ){
 		?>
 			<div class="little-post item">
@@ -29,6 +32,7 @@ $result->execute( array($category_id, $user_id) );
             </div>
 
             <?php } ?>
+			</div>
             <?php }else{
             	echo 'There are no posts.';
             } ?>
