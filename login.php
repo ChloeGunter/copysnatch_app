@@ -19,7 +19,7 @@ require('includes/header-no-nav.php');
                 <label>Password</label>
 				<input type="password" name="password">
 
-                <input type="submit" value="Log In">
+                <input type="submit" value="Log In" class="login-form">
 
 				<input type="hidden" name="did_login" value="true">
             </form>

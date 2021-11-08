@@ -28,7 +28,7 @@ if( $total >= 1 ){
     while( $row = $result->fetch() ){
     ?>
     <div class="one-comment">
-        <div class="user">
+        <div class="user author">
         <?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
 
 			<?php 

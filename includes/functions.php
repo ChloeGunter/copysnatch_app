@@ -315,7 +315,7 @@ function rating_inputs($post_id = 0, &$user_id = 0){
         else{
             $row = $result->fetch();
             $rating = $row['rating'];
-            echo '<br>you have rated this recipe '. $rating . ' stars';
+            echo '<p>you have rated this recipe '. $rating . ' stars</p>';
         }
     }//end if logged in
     else{

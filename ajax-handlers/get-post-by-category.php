@@ -21,7 +21,7 @@ $result->execute( array($category_id, $user_id) );
 			//loop it - once per row
 			while( $row = $result->fetch() ){
 		?>
-		<div class="one-post little-post item">
+			<div class="little-post item">
                 <a href="single.php?post_id=<?php echo $row['post_id']; ?>">
     <!-- 			<img src="<?php //echo $row['image']; ?>" /> -->
                 <?php show_post_image( $row['image'], 'small' ); ?>

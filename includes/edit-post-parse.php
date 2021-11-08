@@ -47,9 +47,9 @@ if( isset( $_POST['did_edit'] ) ){
 	$valid = true;
 
 	//title too long or blank
-	if( $title == '' OR strlen($title) > 50 ){
+	if( $title == '' OR strlen($title) > 20 ){
 		$valid = false;
-		$errors[] = 'Please provide a title that is shorter than 50 charcters.';
+		$errors[] = 'Please provide a title that is shorter than 20 charcters.';
 	}
 	//body too long
 	if( strlen($body) > 2000 ){

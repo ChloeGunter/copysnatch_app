@@ -14,7 +14,7 @@ if( isset( $_GET['user_id'] ) ){
 	$user_id = 0;
 }
  ?>
-    <main class="content">
+    <main class="content profile">
     <?php //1. Write it. get this users info as well as any published posts they've written
 		$result = $DB->prepare('SELECT users.username, users.bio, 
 								users.profile_pic
@@ -32,17 +32,17 @@ if( isset( $_GET['user_id'] ) ){
     <div class="profile">
 			<div class="author author-profile">
 			<?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
+                <div class="edit">
+                <?php 
+                    //if this profile belongs to the logged in user, show a 'edit profile' button, otherwise show the follow button
+                    if( $logged_in_user AND $user_id == $logged_in_user['user_id'] ){
+                    ?>
+                        <div class="item"><a class="button button-outline" href="edit-profile.php?user_id=<?php echo $logged_in_user['user_id']; ?>">Edit Profile</a></div>
+                <?php }?>
+                </div>
 				<h2><?php echo $row['username']; ?></h2>
 				<p><?php echo $row['bio']; ?></p>
 			</div>
-            <div class="edit">
-            <?php 
-				//if this profile belongs to the logged in user, show a 'edit profile' button, otherwise show the follow button
-				if( $logged_in_user AND $user_id == $logged_in_user['user_id'] ){
-				 ?>
-					<div class="item"><a class="button" href="edit-profile.php?user_id=<?php echo $logged_in_user['user_id']; ?>">Edit Profile</a></div>
-			<?php }?>
-            </div>
             <?php }
         }?>
     </div>
@@ -73,7 +73,7 @@ if( isset( $_GET['user_id'] ) ){
 
 			<?php // if the user has a post, show it, otherwise this is a blank profile
 			if( $row['image'] != '' ){ ?>
-            <div class="one-post little-post item">
+            <div class="little-post item">
                 <a href="single.php?post_id=<?php echo $row['post_id']; ?>">
     <!-- 			<img src="<?php //echo $row['image']; ?>" /> -->
                 <?php show_post_image( $row['image'], 'small' ); ?>

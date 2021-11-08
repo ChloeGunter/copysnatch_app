@@ -22,7 +22,7 @@ require('includes/header-no-nav.php');
 
         <label>
 			<input type="checkbox" name="policy" value="1" <?php checked( $policy, 1 ); ?>>
-			I agree to the <a href="#" target="_blank">terms of use and privacy policy</a>
+			I agree to the <a href="terms-of-service.php" target="_blank" class="terms-link">terms of use and privacy policy</a>
 		</label>
 
 		<input type="submit" value="Sign Up">

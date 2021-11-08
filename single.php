@@ -16,7 +16,7 @@ if( isset( $_GET['post_id'] ) ){
 }
 require('includes/comment-parse.php');
  ?>
-    <main class="content">
+    <main class="content" id="single">
     <?php //1. Write it. get all published posts, newest first
 		$result = $DB->prepare('SELECT posts.*, users.username, users.profile_pic, categories.name AS category, levels.name AS level
 								FROM posts, users, categories, levels
@@ -36,30 +36,43 @@ require('includes/comment-parse.php');
 		 ?>
         <div class="one-post">
 
-			<span class="author">
-				<a href="profile.php?user_id=<?php echo $row['user_id']; ?>"><?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
-				<?php echo $row['username']; ?></a>
-			</span>
 
             <?php show_post_image( $row['image'] ); ?>
 
-			<h2><?php echo $row['title']; ?></h2>
-			<p><?php echo $row['body']; ?></p>
-			<h3 class="category"><?php echo $row['category']; ?></h3>
+			<div class="special-author-container">
 
-			<!-- this container has to be here -->
-			<div class="rating-container">
-			<?php rating_interface($row['post_id'], $logged_in_user['user_id']); ?>	
+				<span class="author">
+					<a href="profile.php?user_id=<?php echo $row['user_id']; ?>">
+					<?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
+					<?php echo $row['username']; ?>
+					</a>
+				</span>
+
+				<div class="rating-container">
+					<?php rating_interface($row['post_id'], $logged_in_user['user_id']); ?>	
+				</div>
+
+			</div>
+
+			<div class="box-container">
+				<h2><?php echo $row['title']; ?></h2>
+
+				<p class="description"><?php echo $row['body']; ?></p>
+
+				<p class="category">Category: <?php echo $row['category']; ?></p>
 			</div>
             
-            <div class="nutrition">
-                <span><i></i><?php echo $row['time']; ?>minutes</span>
-                <span><i></i><?php echo $row['servings']; ?>servings</span>
-                <span><i></i><?php echo $row['calories']; ?>calories</span>
-                <span><i></i><?php echo $row['level']; ?></span>
-            </div>
+			<div class="box-container">
+				<div class="nutrition">
+					<div><i class="fas fa-clock"></i><p><?php echo $row['time']; ?></p><p class="description">minutes</p></div>
+					<div><i class="fas fa-user-friends"></i><p><?php echo $row['servings']; ?></p><p class="description">servings</p></div>
+					<div><i class="fas fa-fire"></i><p><?php echo $row['calories']; ?></p><p class="description">calories</p></div>
+					<div><i class="fas fa-layer-group"></i><p class="level"><?php echo $row['level']; ?></p></div>
+				</div>
+			</div>
 
             <div class="box-container">
+				<h4>Ingredients</h4>
                 <ul><?php 
 						$array = unserialize($row['ingredients']);
 						foreach($array as $item ){
@@ -69,17 +82,25 @@ require('includes/comment-parse.php');
             </div>
 
             <div class="box-container">
-			<ol><?php 
+				<h4>Instructions</h4>
+					<ol><?php 
 						$array = unserialize($row['steps']);
 						foreach($array as $step ){
 							echo "<li>$step</li>";
 						}
 					?></ol>
             </div>
+			
+            <div class="special-author-container">
+                <p class="comment-count"><i class="fas fa-comment"></i> <?php count_comments( $row['post_id'] ); ?></p>
 
-            <div class="box-container">
-                <span class="comment-count"><?php count_comments( $row['post_id'] ); ?></span>
-            </div>
+				<?php 
+					//show this button if the logged in user is the author
+					if( $logged_in_user AND $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+					<br>
+					<a href="edit-post.php?post_id=<?php echo $row['post_id']; ?>" class="button button-outline">Edit</a>
+				<?php } ?>
+			</div>
 
         </div>
 
