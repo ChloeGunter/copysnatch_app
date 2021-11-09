@@ -109,15 +109,17 @@ require('includes/comment-parse.php');
 
 		<?php 
 		//show this button if the logged in user is the author
-		if( $logged_in_user AND $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+		if( $logged_in_user == true ){ ?>
 		<div class="box-container">
 		<?php include('includes/comments.php'); ?>
 		<?php include('includes/comment-form.php') ?>
 		</div>
-		<?php }else{
-    			echo '<h3>Please <a href="login.php">Log in</a> to view and leave comments!</h3>';
-			  } ?>
-
+		<?php } else{ 
+			return false;
+			echo '<h3>Please <a href="login.php">Log in</a> to view and leave comments!</h3>';
+			} ?>
+		
+		
 		<?php 
 		} //end while loop.
 			}else{ ?>

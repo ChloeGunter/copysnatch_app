@@ -207,13 +207,17 @@ i.fa.fa-search {
 
 /* SEARCH PAGE */
 #search .one-post p.post-description{
-	padding-bottom: 25px;
+	padding-bottom: 15px;
 }
 
 section.search-title h2 {
     font-size: 3.25rem;
     line-height: 1.25;
 	margin-bottom: 0;
+}
+
+#search div.special-author-container {
+	padding: 20px 15px;
 }
 
 section.search-title h3 {
