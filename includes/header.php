@@ -14,14 +14,13 @@ $logged_in_user = check_login();
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <div class="site">
         <header class="header">
             <a href="index.php" class="logo"><img src="images/header-logo.png" class="logo" /></a>
             <nav class="main-navigation">
                 <ul class="menu">
                 <?php if( ! $logged_in_user ){ ?>
                     <li><a href="signup.php">Sign Up</a></li>
-                    <span> | </span>
+                    <span class="no-login"> | </span>
                     <li><a href="login.php">Log In</a></li>
                 <?php }else{ ?>
                     <li><a href="new-post.php" class="add-post-button"><i class="fas fa-plus"></i></a></li>

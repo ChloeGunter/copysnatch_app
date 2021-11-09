@@ -14,7 +14,7 @@ if( isset( $_GET['user_id'] ) ){
 	$user_id = 0;
 }
  ?>
-    <main class="content profile">
+    <main class="content" id="profile">
     <?php //1. Write it. get this users info as well as any published posts they've written
 		$result = $DB->prepare('SELECT users.username, users.bio, 
 								users.profile_pic
@@ -55,7 +55,7 @@ if( isset( $_GET['user_id'] ) ){
         <a href="#categories" class="tab">Categories</a>
       </nav>
 
-    <section id="recipes" class="content visible flex">
+    <section id="recipes" class="content visible">
     <?php //1. Write it. get this users info as well as any published posts they've written
 		$result = $DB->prepare('SELECT posts.*, users.user_id
 								FROM posts, users
@@ -76,7 +76,7 @@ if( isset( $_GET['user_id'] ) ){
 
 			<?php // if the user has a post, show it, otherwise this is a blank profile
 			if( $row['image'] != '' ){ ?>
-            <div class="little-post item">
+            <div class="little-post">
                 <a href="single.php?post_id=<?php echo $row['post_id']; ?>">
     <!-- 			<img src="<?php //echo $row['image']; ?>" /> -->
                 <?php show_post_image( $row['image'], 'small' ); ?>
@@ -103,7 +103,7 @@ if( isset( $_GET['user_id'] ) ){
         </section>
 
 
-        <section id="categories" class="content flex">
+        <section id="categories" class="content">
         <?php 
             //get all the categories in the alphabetical order
             $result = $DB->prepare('SELECT * FROM categories

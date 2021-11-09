@@ -1,8 +1,5 @@
 TODO
 ----
-* Improve CSS of the page
-* Improve CSS on popular posts on home page
-* Fix edit profile error for no changes made.
 
 DONE
 ----
@@ -35,3 +32,6 @@ DONE
 * Build rating parse system on single.php
 * Build logic for categories of recipes tab
 * Fix popular posts logic
+* Improve CSS on popular posts on home page
+* Fix edit profile error for no changes made.
+* Improve CSS of the site

@@ -3,7 +3,7 @@ require('CONFIG.php');
 require_once('includes/functions.php');
 require('includes/header.php');
  ?>
-    <main class="content">
+    <main class="content" id="home">
 
 	<h2 class="section-heading">Popular Recipes</h2>
 	<div class="popular-container">
@@ -107,8 +107,10 @@ require('includes/header.php');
 
 				<p class="date"><?php echo time_ago( $row['date']); ?></p>
 
-				<div><?php rating_output($row['post_id'], $logged_in_user['user_id']); ?></div>
-
+				<div class="rating-container">
+						<?php rating_interface($row['post_id'], $logged_in_user['user_id']); ?>	
+				</div>
+				
 			</span>
 		</div>
 

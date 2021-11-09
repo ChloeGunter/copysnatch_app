@@ -25,6 +25,25 @@ font-family: 'Raleway', sans-serif;
 	--shadow-small: 2px 3px 6px rgba(38, 43, 61, 0.87);
 }
 
+
+.button.button-outline, 
+button.button-outline, 
+input[type='button'].button-outline, 
+input[type='reset'].button-outline, 
+input[type='submit'].button-outline {
+	color: var(--accent-color);
+}
+
+.button.button-outline:hover,
+button.button-outline:hover,
+input[type='button'].button-outline:hover, 
+input[type='reset'].button-outline:hover, 
+input[type='submit'].login-form:hover {
+	color: var(--medium-color);
+	border: 2px solid var(--light-color);
+	background-color: transparent;
+}
+
 /* MOBILE SCREEN */
 body {
 	font-size: 100%;
@@ -43,6 +62,15 @@ main.content {
 
 a {
 	color: var(--accent-color);
+}
+
+select:focus {
+	border-color: var(--accent-color);
+	/* background-image: none; */
+}
+
+select {
+	border: 0.1rem solid var(--accent-color);
 }
 
 
@@ -79,6 +107,10 @@ a {
     font-weight: 500;
 }
 
+.header ul.menu li a:hover {
+	color: var(--accent-color);
+}
+
 .header ul.menu li.profile_pic {
     margin-top: 0;
 }
@@ -102,6 +134,11 @@ a.add-post-button {
 
 .header .main-navigation {
 	padding-left: .25rem;
+}
+.header span.no-login {
+	font-size: 2rem;
+	line-height: 4rem;
+	margin-right: 1.75rem;
 }
 
 /* HEADER NO NAV */
@@ -168,6 +205,37 @@ i.fa.fa-search {
     color: var(--text-color);
 }
 
+/* SEARCH PAGE */
+#search .one-post p.post-description{
+	padding-bottom: 25px;
+}
+
+section.search-title h2 {
+    font-size: 3.25rem;
+    line-height: 1.25;
+	margin-bottom: 0;
+}
+
+section.search-title h3 {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+}
+
+section.pagination {
+	padding-left: 8px;
+}
+
+section.pagination h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+section.pagination .button.button-outline {
+	border: 2px solid white;
+}
+
+
+
 /* LOGGED IN USER */
 i.fas fa-plus {
     background-color: var(--light-color);
@@ -184,9 +252,9 @@ i.fas fa-plus {
 }
 
 /* EXPLORE FEED */
-div.explore-container {
+.explore-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 	grid-gap: 1rem;
 }
 
@@ -199,9 +267,11 @@ div.explore-container {
 	position: relative;
 	max-width: 350px;
 	margin: 0 auto 25px;
+	padding-bottom: 10px;
 }
 
-.one-post img {
+.one-post .post-image img,
+.one-post img{
 	border-radius: 20px;
 }
 
@@ -214,6 +284,7 @@ div.explore-container {
 
 span.author a img {
     margin-right: 8px;
+	border-radius: 50px;
 }
 
 .one-post h3 {
@@ -260,6 +331,10 @@ span.post-info p {
     color: var(--text-color);
 	font-weight: 500;
 	font-size: 1.25rem;
+}
+
+#home .rating-container {
+	padding-top: 0;
 }
 
 /* NUTRITION TABS */
@@ -325,6 +400,10 @@ section.content{
 	text-align: center;
 }
 
+nav.tab-list {
+    margin-bottom: 20px;
+}
+
 section.visible{
 	display: block;
 }
@@ -339,12 +418,14 @@ section.visible{
     width: 49%;
     text-align: center;
     font-weight: 500;
+	border: 2px solid transparent;
 }
 
 .tab:hover,
 .tab.active {
 	color: #ffffff;
     background: var(--accent-color);
+	border: 2px solid var(--medium-color);
 }
 
 #portfolio section.portfolio-options nav {
@@ -373,7 +454,7 @@ section.content img {
     font-weight: 500;
 }
 
-.profile a.button.button-outline {
+.profile .button.button-outline {
     border: 2px solid white;
 	margin: 0 auto;
 }
@@ -383,19 +464,161 @@ section.content img {
 	text-align: center;
 }
 
-/* RECIPE SECTION */
+/* RECIPE/CATEGORIES SECTION */
 div.profile-grid {
-	display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(3, auto);
+	display: flex;
+    flex-wrap: wrap;
+}
+
+.little-post {
+    width: 33%;
 }
 
 section.content#recipes img,
 section.content#categories img {
-	width: auto;
+	width: 100%;
 	padding: 3px;
+	border-radius: 20px;
 }
 
+section#categories {
+    text-align: left;
+	border-color: var(--accent-color);
+}
+
+select.category-dropdown {
+    margin: 20px 0 10px;
+    max-width: 300px;
+}
+
+p.category-feedback {
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+/* EDIT PROFILE */
+div.box-container {
+	margin: 0 auto;
+    max-width: 350px;
+    position: relative;
+    width: 100%;
+    background-color: var(--light-color);
+	box-shadow: var(--shadow-small);
+    border-radius: 20px;
+}
+
+#edit-profile .button.button-outline {
+	background-position: 50% 82%;
+}
+
+textarea {
+	background-color: white;
+}
+
+#edit-profile {
+	background-color: var(--light-color);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 350px;
+    margin: 30px auto;
+}
+
+.content#edit-profile form {
+	margin: 0;
+}
+
+#edit-profile input[type='submit'] {
+    margin-bottom: 5px;
+	display: block;
+}
+
+
+/* ADD POST */
+.content#box-container {
+	background-color: var(--light-color);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 350px;
+    margin: 30px auto;
+}
+
+.content#box-container form {
+	margin: 0;
+}
+
+#box-container input[type='submit'] {
+    margin-bottom: 5px;
+	display: block;
+}
+
+/* EDIT POST */
+main#edit-post {
+    background-color: var(--light-color);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 750px;
+    margin: 30px auto;
+}
+
+#edit-post img {
+	max-width: 350px;
+    padding: 3px;
+    border-radius: 20px;
+}
+
+#edit-post input[type="text"] {
+    width: 300px;
+    font-size: 2rem;
+}
+
+#edit-post #sfield input[type="text"] {
+    min-width: 500px;
+    font-size: 2rem;
+}
+
+#edit-post textarea {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+#edit-post select {
+	max-width: 300px;
+}
+
+#edit-post span {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+#edit-post input[type="number"] {
+    max-width: 80px;
+    margin-right: 5px;
+	background-color: white;
+}
+
+#edit-post fieldset div {
+	display: flex;
+}
+
+#edit-post fieldset label {
+	font-size: 2rem;
+	padding: 10px;
+}
+
+#edit-post fieldset {
+	margin-bottom: 0;
+}
+
+#edit-post button.button-outline {
+	margin-left: 36px;
+	background-color: var(--text-color);
+    border-radius: 100px;
+    padding: 0;
+    font-size: 2rem;
+    height: 4rem;
+    width: 4rem;
+}
 
 
 
@@ -474,9 +697,50 @@ p.comment-count {
     margin-bottom: 1rem;
 }
 
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
 
-/* LOGIN FORM */
-.container.login-form {
+.one-comment {
+	font-size: 1.75rem;
+	color: var(--text-color);
+    font-weight: 500;
+    line-height: 2.625rem;
+}
+
+.one-comment p {
+	margin-bottom: 0;
+	line-height: 1.25rem;
+}
+
+.one-comment span {
+	color: var(--accent-color);
+	font-size: 1.25rem;
+}
+
+.one-comment .user.author img {
+	margin-right: 8px;
+}
+
+.comment-form {
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+#single .box-container {
+	padding: 1rem 2rem 0;
+}
+
+#single div.box-container {
+	padding: 20px 20px 10px;
+}
+
+
+/* LOGIN FORM/SIGNUP FORM */
+.container.login-form,
+.container.signup-form {
     margin: 0 auto;
     max-width: 112rem;
     padding: 2rem;
@@ -486,21 +750,27 @@ p.comment-count {
     border-radius: 20px;
 }
 
-.container.login-form h1 {
+.container.login-form h1,
+.container.signup-form h1 {
 	font-weight: 500;
 }
 
-.container.login-form form {
+.container.login-form form,
+.container.signup-form form {
 	margin-bottom: 0;
 }
 
 input[type="text"], 
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     background-color: white;
+	max-width: 400px;
 }
 
-input[type='submit'].login-form {
+input[type='submit'].login-form,
+input[type='submit'].signup-form {
     border: 2px solid var(--light-color);
+	display: block;
 }
 
 .container.login-form p {
@@ -519,81 +789,6 @@ a.terms-link {
 
 
 
-/* 
-== Header 
-*/
-/* .header {
-	background: var(--base-color);
-	color:var(--light-text);
-}
-header a.logo{
-	height: 100px;
-}
-.header h1 a{
-	color:inherit;
-} */
-/* 
-== Navigation bar and main menu 
-*/
-/* .main-navigation{
-	background-color: gray;
-}
-.menu{	
-	list-style-type:none;
-	margin:0;
-}
-.menu li{
-	width: auto;
-	margin: .4em .5em 0;
-}
-.menu a{
-	color:var(--light-text);
-	display: block;
-	padding:.5em .5em;
-}
-.menu a:hover{
-	background-color:var(--light-color);
-	color:var(--text-color);
-} */
-/* .searchform {
-	display: flex;
-	justify-content: center;
-	min-width: 320px;	
-	margin:0;
-	padding:.5em;
-}
-.searchform input{
-	margin:0 .25em;
-}
-.searchform input[type=search]{
-	width:100%;
-}
-
-.searchform input[type=search]:focus{
-	background-color: rgba(255,255,255,.8);
-	color:black;
-} */
-/* 
-== Main Content Area
-*/
-/* .content{
-	padding: 1em;
-}
-.content .post{
-	max-width:600px;
-	margin:.5em auto 2em;
-}
-.content .comments{
-	border-top:solid 1px var(--accent-color);
-	max-width: 35em;
-	margin:1em auto;
-	padding:1em .25em;
-}
-.one-comment{
-	border-top:solid 1px var(--medium-color);
-	margin:2em 0;
-}
-*/
 .author,  .user{
 	display: block;
 	margin: .75em 0;
@@ -606,75 +801,6 @@ header a.logo{
 .author-profile img{
 	margin:1.5em 0 .75em;
 } 
-
-/*profile pics*/
-/* .content .category, 
-.content .date,
-.content .comment-count,
-.content .likes,
-.content .ago {
-	display: block;
-	font-size:.8em;
-	color:var(--text-color);
-	position: relative;
-}  */
-/*category icon*/
-/* .content .category:before{
-	content:'';
-	background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ4IDQ4IiBoZWlnaHQ9IjQ4cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0OCA0OCIgd2lkdGg9IjQ4cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0xOC43MjQsMEgwdjE4LjI1NmwtMC4xODQsMC40bDI5LjA5OSwyOC45OTFsMTkuMTQ2LTE5LjA5MkwxOS4wOTctMC40MThMMTguNzI0LDB6IE0xMC4yODUsOS44MTcgIGMtMC45NzcsMC45NzctMi41NTksMC45NzctMy41MzYsMGMtMC45NzctMC45NzctMC45NzctMi41NiwwLTMuNTM2YzAuOTc3LTAuOTc2LDIuNTU5LTAuOTc2LDMuNTM2LDAgIEMxMS4yNjEsNy4yNTgsMTEuMjYxLDguODQxLDEwLjI4NSw5LjgxN3oiIGZpbGw9IiMyMjFGMUYiLz48L3N2Zz4=); 
-	width:1em;
-	height:1em;
-	margin:0  .5em 0 0;
-	background-size:contain;
-	display: inline-block;
-	background-repeat: no-repeat;
-	background-position: center bottom;
-	opacity:.4;
-} */
-/*comment icon*/
-/* .content .comment-count:before{
-	content:'';
-	background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjcxOCwxOC41NjFsNi43OCw1LjMxMUMxNy42MDksMjMuOTU3LDE3LjY3NywyNCwxNy43NDMsMjQgIGMwLjE4OCwwLDAuMjQ0LTAuMTI3LDAuMjQ0LTAuMzM4di01LjAyM2MwLTAuMzU1LDAuMjMzLTAuNjM3LDAuNTQ4LTAuNjM3TDIxLDE4YzIuMjE5LDAsMy0xLjA5NCwzLTJzMC0xMywwLTE0cy0wLjc0OC0yLTMuMDE0LTIgIEgyLjk4OUMwLjgwMiwwLDAsMC45NjksMCwyczAsMTMuMDMxLDAsMTRzMC44MjgsMiwzLDJoNkM5LDE4LDEwLjI1NSwxOC4wMzUsMTAuNzE4LDE4LjU2MXoiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==); 
-	width:1em;
-	height:1em;
-	margin:0  .5em 0 0;
-	background-size:contain;
-	display: inline-block;
-	background-repeat: no-repeat;
-	background-position: center bottom;
-	opacity:.4;
-} */
-/*calendar icon*/
-/* .content .date:before{
-	content:'';
-	background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyMHB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxOCAyMCIgd2lkdGg9IjE4cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzAwMDAwMCIgaWQ9IkNvcmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMzkuMDAwMDAwLCAtNDY0LjAwMDAwMCkiPjxnIGlkPSJ0b2RheSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzM5LjAwMDAwMCwgNDY0LjAwMDAwMCkiPjxwYXRoIGQ9Ik0xNiwyIEwxNSwyIEwxNSwwIEwxMywwIEwxMywyIEw1LDIgTDUsMCBMMywwIEwzLDIgTDIsMiBDMC45LDIgMCwyLjkgMCw0IEwwLDE4IEMwLDE5LjEgMC45LDIwIDIsMjAgTDE2LDIwIEMxNy4xLDIwIDE4LDE5LjEgMTgsMTggTDE4LDQgQzE4LDIuOSAxNy4xLDIgMTYsMiBMMTYsMiBaIE0xNiwxOCBMMiwxOCBMMiw3IEwxNiw3IEwxNiwxOCBMMTYsMTggWiIgaWQ9IlNoYXBlIi8+PHJlY3QgaGVpZ2h0PSI1IiBpZD0iUmVjdGFuZ2xlLXBhdGgiIHdpZHRoPSI1IiB4PSI0IiB5PSI5Ii8+PC9nPjwvZz48L2c+PC9zdmc+); 
-	width:1em;
-	height:1em;
-	margin:0  .5em 0 0;
-	background-size:contain;
-	display: inline-block;
-	background-repeat: no-repeat;
-	background-position: center center;
-	opacity:.4;
-} */
-/* flexbox grid for thumbnails */
-/* .grid{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-
-}
-.grid .big-post{
-	width:100%;
-	max-width: 100%;
-}
-.grid .item{
-	width:20%;
-	min-width:150px;
-	margin:.5em;
-} */
-
-
 
 /*
 == form feedback system 
@@ -694,10 +820,14 @@ header a.logo{
     border-radius: 20px;
     color: white
 }
+.success a {
+	color: var(--link-color);
+	font-weight: 500;
+}
 .success h2 {
 	font-size: 3rem;
 }
-.success a.button.button-outline {
+.success .button.button-outline {
     margin: 18px 0 0;
 	border: 2px solid var(--accent-color);
 }
@@ -714,30 +844,13 @@ header a.logo{
 	border-bottom:solid 1px #bbb;
 }
 
-/* 
-== Footer
-*/
-/* .footer {
-	background: dimgray;
-	padding:1em;
-	color:white;
-} */
-/* 
-== Milligram recolor 
-*/
-/* a{
-	color:var(--link-color);
-}
-a:hover{
-	color:var(--accent-color);
-}
-*/
+
 .button, button, input[type='button'], input[type='reset']{
 	background-color:var(--accent-color);
 	border-color:var(--accent-color);
 }
 
-a.button.button-outline {
+.button.button-outline {
 	background-image: url(../images/copysnatch-button.png);
 	background-size: cover;
 	background-position-x: right;
@@ -765,104 +878,6 @@ input[type='submit'] {
 #single textarea {
     margin-bottom: 0;
 }
-
-/*
-pre{
-	border-color:var(--accent-color);
-}
-input[type='email']:focus, input[type='number']:focus, input[type='password']:focus, input[type='search']:focus, input[type='tel']:focus, input[type='text']:focus, input[type='url']:focus, textarea:focus, select:focus{
-	border-color:var(--accent-color);
-} */
-/* Custom size */
-/* .button-small {
-  font-size: .8rem;
-  height: 2.8rem;
-  line-height: 2.8rem;
-  padding: 0 1.2rem;
-} */
-/*custom file input*/
-/* input[type='file']{
-	padding:.25em;
-	background-color: #E4E4E4;
-    border: 0.1rem solid #d1d1d1;
-    border-radius: .4rem;
-    box-shadow: none;
-    box-sizing: inherit;
-    height: 3.8rem;
-    padding: .6rem 1.0rem;
-    width: 100%;
-    font-size:.9em;
-    font-family: inherit;
-} */
-/* 
-== CSS Grid Layout 
-Breakpoints: check for browsers that support grid 
-*/
-/* @supports (grid-area: auto) {
-	.site {
-		display: grid;
-		grid-template-areas: 	"header" 
-		"content" 
-		"sidebar" 
-		"footer";
-	}
-	.header {
-		grid-area: header;
-	}
-	.content {
-		grid-area: content;
-	}
-	.sidebar {
-		grid-area: sidebar;
-	}
-	.footer {
-		grid-area: footer;
-	}
-	
-	== Responsive nav bar 
-	
-	.main-navigation{
-		display: grid;
-		grid-template-areas: 	"search" 
-		"menu";
-	}
-	.searchform{
-		grid-area:search;
-	}
-	.menu{
-		grid-area:menu;
-	}
-	@media screen and (min-width: 700px) {
-		.main-navigation{
-			grid-template-columns: 1.5fr 1fr;
-			grid-template-areas:  "search menu";
-		}
-		.menu{
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: flex-start;
-		}
-		.searchform input[type=search]{
-
-			max-width:320px;
-		}
-	}
-	@media screen and (min-width: 800px) {
-		.site {
-			grid-template-columns: 2fr  1fr;
-			grid-template-rows: 1fr 10fr 1fr;
-			grid-template-areas: "header  header"
-			"content  sidebar"
-			"content  sidebar"
-			"footer footer";
-		}
-		.main-navigation{
-			grid-template-columns:2fr 1fr;
-			grid-template-areas:  "search menu";
-		}
-		
-	}
-} */
 
 /*
 Star rating CSS From Rogie's pen: 
@@ -950,6 +965,43 @@ Star rating CSS From Rogie's pen:
 	padding-top: 10px;
 }
 
+/* ABOUT US PAGE */
+.about {
+	padding: 20px;
+}
+
+img.owner-pic {
+    border-radius: 80px;
+    width: 100px;
+    float: left;
+    margin: 0 20px 10px 0;
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--text-color);
+    padding: 20px;
+}
+
+footer img {
+	width: 300px;
+}
+
+ul.footer-menu {
+    list-style-type: none;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-top: 15px;
+}
+
+ul.footer-menu li a {
+    color: white;
+}
+
+ul.footer-menu li a:hover {
+    color: var(--accent-color);
+}
+
 @media screen and (min-width: 730px) {
 
 	.header {
@@ -961,24 +1013,228 @@ Star rating CSS From Rogie's pen:
 
 	.header form {
 		text-align: right;
-		margin: 0 20px 0 0;
+		margin: 20px 20px 0 0;
 	}
 
 	/* NAVIGATION MENU */
 	.header ul.menu {
 		padding: 25px 15px 0 0;
+		max-width: 300px;
 	}
 
 	.header ul.menu li, 
 	.header ul.menu span.menu {
-		margin: 1rem 1.75rem 0 0;
-		font-size: 1.45rem;
+		margin: 1rem 2rem 0 0;
+		font-size: 1.75rem;
+	}
+
+	a.add-post-button {
+		padding: 8px 11px;
+		font-size: 1.875rem;
+	}
+
+	li.profile_pic img {
+		width: 52px;
+	}
+
+	.header form input[type="search"] {
+		width: 175px;
+	}
+
+	.author img {
+		width: 52px;
+	}
+
+	.header span.no-login {
+		font-size: 3rem;
+		line-height: 4.75rem;
+	}
+
+	main.content {
+		padding: 20px;
+	}
+
+	.content#home {
+		max-width: 1180px;
+	}
+
+	/* HEADER NO NAV */
+	.header-nonav {
+		display: flex;
+	}
+
+	.header-nonav h4 {
+		text-align: right;
+		padding: 20px;
+		font-size: 6rem;
+		font-weight: 600;
+		max-width: 600px;
+	}
+
+	/* SEARCH PAGE */
+	main.content#search {
+		max-width: 1080px;
+		margin: 0 auto;
 	}
 
 
 
 
+	/* SINGLE POST */
+	#single {
+    	max-width: 900px;
+    	margin: 0 auto;
+	}
+	#single .one-post {
+		display: grid;
+		grid-template-areas: "post-details post-image"
+							 "nutrition nutrition"
+							 "ingredients ingredients"
+							 "instructions instructions"
+							 "details details";
+		grid-template-columns: 60% 40%;
+		max-width: 900px;
+		padding-left: 12px;
+	}
 
+	#single .one-post img.post-image {
+		padding-left: 40px;
+		grid-area: post-image
+	}
+
+	#single .one-post .post-details {
+		grid-area: post-details;
+		max-width: 400px;
+	}
+
+	#single div.special-author-container {
+		flex-direction: column;
+		padding: 8px 0 0;
+	}
+
+	#single .rating-container {
+		text-align: left;
+		height: 50px;
+		margin-bottom: 4.25rem;
+	}
+
+	#single .one-post div.post-details p.description {
+		font-size: 1.75rem;
+		margin-bottom: 0.45rem;
+	}
+
+	#single .one-post p.category {
+		font-size: 1.35rem;
+		font-weight: 600;
+	}
+
+	#single .one-post .nutrition {
+		grid-area: nutrition;
+		margin: 30px 0;
+	}
+
+	#single .one-post .ingredients-container {
+		grid-area: ingredients;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#single .one-post .instructions-container {
+		grid-area: instructions;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.post-footer {
+		grid-area: details;
+		padding: 0 15px;
+	}
+
+
+	/* PROFILE PAGE */
+	main.content#profile  {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	#profile .author-profile {
+		text-align: left;
+		max-width: unset;
+	}
+
+	#profile .profile .edit {
+		text-align: left;
+	}
+
+	.tab {
+		font-size: 2.25rem;
+		max-width: 420px;
+	}
+
+	.content#box-container {
+		max-width: 500px;
+	}
+
+	/* POPULAR POST */
+	div.popular-post {
+		width: 75px;
+		margin: 0 18px;
+	}
+
+	.author.popular img {
+		width: 40px;
+		top: 52px;
+	}
+
+	/* ADD A POST/EDIT PROFILE */
+	#box-container form label,
+	#edit-profile form label {
+		font-size: 2rem;
+	}
+
+	div.box-container {
+		max-width: 900px;
+	}
+
+	/* ABOUT US PAGE */
+	.about p {
+		font-size: 1.25rem;
+	}
+
+
+}
+
+
+
+@media screen and (min-width: 1180px) {
+
+	main.content#single,
+	main.content#search,
+	main.content#box-container,
+	main.content#edit-post,
+	main.content#edit-profile,
+	main.content#profile {
+		margin: 20px;
+	}
+
+	/* FEED PAGE */
+	h2.section-heading {
+		font-size: 4rem;
+		margin-bottom: 1.85rem
+	}
+
+	/* ABOUT US PAGE */
+	.about#box-container {
+		max-width: 650px;
+	}
+	
+	.about h2 {
+		font-size: 5rem;
+	}
+
+	.about p {
+		font-size: 1.75rem;
+	}
 
 
 
@@ -986,4 +1242,3 @@ Star rating CSS From Rogie's pen:
 
 
 }
-

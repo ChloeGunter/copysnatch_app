@@ -34,5 +34,5 @@ $result->execute( array($category_id, $user_id) );
             <?php } ?>
 			</div>
             <?php }else{
-            	echo '<p class="category-feedback">There are no posts in this category.</p>';
+            	echo 'There are no posts.';
             } ?>

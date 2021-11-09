@@ -11,7 +11,7 @@ $phrase = filter_var( $_GET['phrase'], FILTER_SANITIZE_STRING );
 
 require('includes/header.php');
  ?>
-<main class="content">
+<main class="content" id="search">
 <?php 
 	if( $phrase != '' ){
 		//get all the published posts about this phrase.
@@ -41,8 +41,10 @@ require('includes/header.php');
 		$offset = ( $current_page - 1 ) * $per_page;
 
 		//write the query again, this time with the LIMIT
-		$result = $DB->prepare('SELECT * FROM posts
+		$result = $DB->prepare('SELECT posts.*, users.username, users.user_id, users.profile_pic
+                                FROM posts, users
 								WHERE is_published = 1
+                                AND users.user_id = posts.user_id
 								AND (
 									title LIKE :phrase
 									OR body LIKE :phrase
@@ -58,41 +60,53 @@ require('includes/header.php');
 		$result->execute();
 
  ?>
-    <section class="title">
+    <section class="search-title">
         <h2>Search Results for <?php echo $phrase; ?></h2>
         <h3><?php echo $total; ?> posts found</h3>
         <!-- TODO: May not keep -->
-        <h3>Showing page <?php echo $current_page; ?> of <?php echo $max_pages; ?></h3>
     </section>
-
+    <section class="explore-container">
     <?php 
         // if the total number of posts found is >= 1 then...
         if( $total >= 1 ){
     ?>
 
-    <section class="grid">
+
         <?php    
             //while(){// while loop to fetch
             while( $row = $result->fetch() ){
         ?>
-        <div class="item">
+        <div class="one-post">
             <a href="single.php?post_id=<?php echo $row['post_id']; ?>">
                 <?php show_post_image( $row['image'], 'small' ); ?>
-                <h2><?php echo $row['title']; ?></h2>
-                <p><?php echo $row['body']; ?></p>
+                <img class="gradient"></img>
+			</a>
+            <div class="special-author-container">
 
-            <div class="nutrition">
-                <span><i></i><?php echo $row['time']; ?>minutes</span>
-                <span><i></i><?php echo $row['servings']; ?>servings</span>
-                <span><i></i><?php echo $row['calories']; ?>calories</span>
-                <!-- <span><i></i><?php // echo $row['levels.name']; ?></span> -->
+                <span class="author">
+                    <a href="profile.php?user_id=<?php echo $row['user_id']; ?>">
+                    <?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
+                    <?php echo $row['username']; ?>
+                    </a>
+                </span>
+
+                <?php 
+                //show this button if the logged in user is the author
+                if( $logged_in_user AND $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+                <br>
+                <a href="edit-post.php?post_id=<?php echo $row['post_id']; ?>" class="button button-outline">Edit</a>
+                <?php } ?>
+                </div>
+
+                <h3><?php echo $row['title']; ?></h3>
+                <p class="post-description"><?php echo $row['body']; ?></p>
             </div>
-            </a>
         </div>
         <?php } // end while loop ?>
     </section> <!-- end grid -->
 
     <section class="pagination">
+    <h3>Showing page <?php echo $current_page; ?> of <?php echo $max_pages; ?></h3>
         <?php 
         //cariables for the neighboring pages
         $prev = $current_page - 1;
@@ -100,12 +114,12 @@ require('includes/header.php');
 
         if( $current_page != 1 ){
          ?>
-        <a href="search.php?phrase=<?php echo $phrase; ?>&amp;page=<?php echo $prev; ?>" class="button">&larr; Previous
+        <a href="search.php?phrase=<?php echo $phrase; ?>&amp;page=<?php echo $prev; ?>" class="button button-outline prev">&larr; Previous
         </a>
         <?php } 
 
         if( $current_page != $max_pages ){ ?>
-        <a href="search.php?phrase=<?php echo $phrase; ?>&amp;page=<?php echo $next; ?>" class="button">Next &rarr;
+        <a href="search.php?phrase=<?php echo $phrase; ?>&amp;page=<?php echo $next; ?>" class="button button-outline">Next &rarr;
         </a>
         <?php } ?>
     </section>

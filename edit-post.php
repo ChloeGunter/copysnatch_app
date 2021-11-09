@@ -10,7 +10,7 @@ if( ! $logged_in_user ){
 $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
 
  ?>
-    <main class="content">
+    <main class="content" id="edit-post">
         <?php require( 'includes/edit-post-parse.php' ); ?>
 
         <h2>Edit Your Post</h2>
@@ -27,6 +27,24 @@ $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
             <label>Caption</label>
             <textarea name="body"><?php echo $body; ?></textarea>
 
+            <?php 
+            //get all the categories in the alphabetical order
+            $result = $DB->prepare('SELECT * FROM categories
+                                    ORDER BY name ASC');
+            $result->execute();
+            if( $result->rowCount() >= 1 ){
+            ?>
+            <label>Category</label>
+            <select name="category_id">
+                <?php while( $row = $result->fetch() ){ ?>
+                <option value="<?php echo $row['category_id']; ?>" 
+                    <?php selected( $category_id, $row['category_id'] ); ?>>
+                    <?php echo $row['name']; ?>
+                </option>
+                <?php } ?>
+            </select>
+            <?php } ?>
+
             <h1>Recipe Details</h1>
             <label>Time to make the recipe:</label>
             <span><input type="number" name="time" value="<?php echo $time; ?>">minutes</span>
@@ -38,7 +56,6 @@ $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
             <span><input type="number" name="calories" value="<?php echo $calories; ?>">calories</span>
 
             <?php 
-            //get all the categories in the alphabetical order
             $result = $DB->prepare('SELECT * FROM levels');
             $result->execute();
             if( $result->rowCount() >= 1 ){
@@ -71,7 +88,7 @@ $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
                 
             </fieldset>	
 
-            <button type="button" class="button-outline float-right" onclick="addFormField('field')">+</button>
+            <button type="button" class="button-outline" onclick="addFormField('field')">+</button>
             <br>
 
 
@@ -91,26 +108,8 @@ $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
                 
             </fieldset>	
 
-            <button type="button" class="button-outline float-right" onclick="addFormStep('sfield')">+</button>
+            <button type="button" class="button-outline" onclick="addFormStep('sfield')">+</button>
             <br>
-
-            <?php 
-            //get all the categories in the alphabetical order
-            $result = $DB->prepare('SELECT * FROM categories
-                                    ORDER BY name ASC');
-            $result->execute();
-            if( $result->rowCount() >= 1 ){
-            ?>
-            <label>Category</label>
-            <select name="category_id">
-                <?php while( $row = $result->fetch() ){ ?>
-                <option value="<?php echo $row['category_id']; ?>" 
-                    <?php selected( $category_id, $row['category_id'] ); ?>>
-                    <?php echo $row['name']; ?>
-                </option>
-                <?php } ?>
-            </select>
-            <?php } ?>
 
             <label>
                 <input type="checkbox" name="allow_comments" value="1" 
@@ -124,7 +123,7 @@ $post_id = filter_var( $_GET['post_id'], FILTER_SANITIZE_NUMBER_INT );
                 Make this post public
             </label>
 
-            <input type="submit" name="Save Post">
+            <input type="submit" name="Save Post" class="button button-outline">
             <input type="hidden" name="did_edit" value="1">
 
         </form>

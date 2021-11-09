@@ -36,62 +36,65 @@ require('includes/comment-parse.php');
 		 ?>
         <div class="one-post">
 
+			
+            <div class="post-image"><?php show_post_image( $row['image'] ); ?></div>
+			<div class="post-details">
+				<div class="special-author-container">
 
-            <?php show_post_image( $row['image'] ); ?>
+					<span class="author">
+						<a href="profile.php?user_id=<?php echo $row['user_id']; ?>">
+						<?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
+						<?php echo $row['username']; ?>
+						</a>
+					</span>
 
-			<div class="special-author-container">
+					<div class="rating-container">
+						<?php rating_interface($row['post_id'], $logged_in_user['user_id']); ?>	
+					</div>
 
-				<span class="author">
-					<a href="profile.php?user_id=<?php echo $row['user_id']; ?>">
-					<?php show_profile_pic( $row['profile_pic'], 'small' ); ?>
-					<?php echo $row['username']; ?>
-					</a>
-				</span>
+					</div>
 
-				<div class="rating-container">
-					<?php rating_interface($row['post_id'], $logged_in_user['user_id']); ?>	
-				</div>
 
+					<h2><?php echo $row['title']; ?></h2>
+
+					<p class="description"><?php echo $row['body']; ?></p>
+
+					<p class="category">Category: <?php echo $row['category']; ?></p>
 			</div>
 
-			<div class="box-container">
-				<h2><?php echo $row['title']; ?></h2>
-
-				<p class="description"><?php echo $row['body']; ?></p>
-
-				<p class="category">Category: <?php echo $row['category']; ?></p>
-			</div>
             
-			<div class="box-container">
+			
 				<div class="nutrition">
 					<div><i class="fas fa-clock"></i><p><?php echo $row['time']; ?></p><p class="description">minutes</p></div>
 					<div><i class="fas fa-user-friends"></i><p><?php echo $row['servings']; ?></p><p class="description">servings</p></div>
 					<div><i class="fas fa-fire"></i><p><?php echo $row['calories']; ?></p><p class="description">calories</p></div>
 					<div><i class="fas fa-layer-group"></i><p class="level"><?php echo $row['level']; ?></p></div>
 				</div>
-			</div>
 
-            <div class="box-container">
-				<h4>Ingredients</h4>
-                <ul><?php 
-						$array = unserialize($row['ingredients']);
-						foreach($array as $item ){
-							echo "<li>$item</li>";
-						}
-					?></ul>
-            </div>
 
-            <div class="box-container">
-				<h4>Instructions</h4>
-					<ol><?php 
-						$array = unserialize($row['steps']);
-						foreach($array as $step ){
-							echo "<li>$step</li>";
-						}
-					?></ol>
-            </div>
+				<div class="ingredients-container">
+					<h4>Ingredients</h4>
+					<ul><?php 
+							$array = unserialize($row['ingredients']);
+							foreach($array as $item ){
+								echo "<li>$item</li>";
+							}
+						?></ul>
+				</div>
+
+
+				<div class="instructions-container">
+					<h4>Instructions</h4>
+						<ol><?php 
+							$array = unserialize($row['steps']);
+							foreach($array as $step ){
+								echo "<li>$step</li>";
+							}
+						?></ol>
+				</div>
+
 			
-            <div class="special-author-container">
+            <div class="post-footer">
                 <p class="comment-count"><i class="fas fa-comment"></i> <?php count_comments( $row['post_id'] ); ?></p>
 
 				<?php 
@@ -104,8 +107,16 @@ require('includes/comment-parse.php');
 
         </div>
 
-		<?php require('includes/comments.php'); ?>
-		<?php require('includes/comment-form.php') ?>
+		<?php 
+		//show this button if the logged in user is the author
+		if( $logged_in_user AND $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+		<div class="box-container">
+		<?php include('includes/comments.php'); ?>
+		<?php include('includes/comment-form.php') ?>
+		</div>
+		<?php }else{
+    			echo '<h3>Please <a href="login.php">Log in</a> to view and leave comments!</h3>';
+			  } ?>
 
 		<?php 
 		} //end while loop.

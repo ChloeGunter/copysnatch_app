@@ -319,7 +319,7 @@ function rating_inputs($post_id = 0, &$user_id = 0){
         }
     }//end if logged in
     else{
-        echo 'not logged in';
+        echo '<br> not logged in';
     }
 }
 

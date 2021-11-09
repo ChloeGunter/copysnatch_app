@@ -6,7 +6,7 @@ require('includes/login-parse.php');
 // header without navigation
 require('includes/header-no-nav.php'); 
  ?>
-    <main class="content">
+    <main class="content" id="box-container">
         <div class="container login-form">
             <h1>Log In</h1>
             
@@ -20,7 +20,6 @@ require('includes/header-no-nav.php');
 				<input type="password" name="password">
 
                 <input type="submit" value="Log In" class="login-form">
-
 				<input type="hidden" name="did_login" value="true">
             </form>
             <p>Don't have an account? <span><a href="signup.php">Sign Up</a></span></p>

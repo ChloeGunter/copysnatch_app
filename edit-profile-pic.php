@@ -7,7 +7,7 @@ if( ! $logged_in_user ){
 	exit( 'This page is for logged in users only.' );
 }
  ?>
-	<main class="content">
+	<main class="content" id="edit-profile">
 		<?php require( 'includes/edit-profile-pic-parse.php' ); ?>
 		<h2>Edit Your Profile</h2>
 
@@ -18,7 +18,7 @@ if( ! $logged_in_user ){
 		    <label>Upload Your Image</label>
             <input type="file" name="uploadedfile" accept="image/*" required>
 
-            <input type="submit" name="Save Changes">
+            <input type="submit" name="Save Changes" class="login-form">
             <input type="hidden" name="did_edit_profile_pic" value="1">
         </form>
 
