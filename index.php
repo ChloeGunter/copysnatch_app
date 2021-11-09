@@ -108,7 +108,7 @@ require('includes/header.php');
 				<p class="date"><?php echo time_ago( $row['date']); ?></p>
 
 				<div class="rating-container">
-						<?php rating_output($row['post_id'], $logged_in_user['user_id']); ?>	
+						<?php rating_output($row['post_id']); ?>	
 				</div>
 				
 			</span>

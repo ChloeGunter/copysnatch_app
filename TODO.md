@@ -36,3 +36,4 @@ DONE
 * Fix edit profile error for no changes made.
 * Improve CSS of the site.
 * Comments available to only logged in users.
+* Fix not logged in user rating system view
